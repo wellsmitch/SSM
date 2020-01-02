@@ -7,6 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.song.mapper.UserMapper">
 	<!-- 通过ID查询一个用户 -->
 	<select id="findUserById" parameterType="Integer" resultType="User">
-		select * from student where id = #{v}
+		select * from user_login where id = #{v}
 	</select>
+
+    <insert id="insertUser"  parameterType="com.song.pojo.User" >
+        insert into user_login(username,sex)
+        values(#{username},#{sex})
+    </insert>
 </mapper>

@@ -16,6 +16,10 @@ public class ItemServiceImpl implements ItemService {
 	private UserMapper userMapper;
 	//��ѯ��Ʒ��Ʒ
 	public List<User> selectUser() {
-		return userMapper.findUserById(3);
-	}
+        return userMapper.findUserById(1);
+    }
+
+    public void insertUser(User user) {
+        userMapper.insertUser(user);
+    }
 }

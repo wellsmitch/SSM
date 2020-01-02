@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface UserMapper {
 	public List<User> findUserById(Integer id);
+	public void insertUser(User user);
 }
