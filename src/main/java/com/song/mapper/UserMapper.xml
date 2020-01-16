@@ -10,8 +10,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user_login where id = #{v}
 	</select>
 
+    <select id="findAllUser" parameterType="com.song.pojo.User" resultType="User">
+		select * from user_login
+	</select>
+
+    <!-- 查询所有用户 -->
+	<select id="findUserByUser" resultType="User">
+		select * from user_login as u
+		<where>
+            <if test="id != null and id !='' ">
+             u.id = #{id}
+            </if>
+            <if test="username != null and username !='' ">
+                or  u.username = #{username}
+            </if>
+            <if test="sex != null and sex !='' ">
+                or  u.sex = #{sex}
+            </if>
+            <if test="address != null and address !=''">
+                or u.address = #{address}
+            </if>
+            <if test="date != null and date !=''">
+                or u.date = #{date}
+            </if>
+        </where>
+	</select>
+
     <insert id="insertUser"  parameterType="com.song.pojo.User" >
         insert into user_login(username,sex)
-        values(#{username},#{sex})
+        values(#{sex},#{username})
     </insert>
+
 </mapper>

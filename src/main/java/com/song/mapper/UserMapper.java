@@ -8,6 +8,8 @@ import java.util.List;
 
 
 public interface UserMapper {
-	public List<User> findUserById(Integer id);
-	public void insertUser(User user);
+    List<User> findAllUser();
+    List<User> findUserByUser(User user);
+	List<User> findUserById(Integer id);
+	void insertUser(User user);
 }

@@ -9,7 +9,7 @@
 <title>修改商品信息</title>
 
 </head>
-<body> 
+<body>
 	<!-- 上传图片是需要指定属性 enctype="multipart/form-data" -->
 	<!-- <form id="itemForm" action="" method="post" enctype="multipart/form-data"> -->
 	<form id="itemForm"	action="${pageContext.request.contextPath }/updateitem.action" method="post">
@@ -23,7 +23,7 @@
 				<td>商品价格</td>
 				<td><input type="text" name="price" value="${item.price }" /></td>
 			</tr>
-			<%-- 
+			<%--
 			<tr>
 				<td>商品生产日期</td>
 				<td><input type="text" name="createtime"
@@ -36,7 +36,7 @@
 						<img src="/pic/${item.pic}" width=100 height=100/>
 						<br/>
 					</c:if>
-					<input type="file"  name="pictureFile"/> 
+					<input type="file"  name="pictureFile"/>
 				</td>
 			</tr>
 			 --%>
@@ -52,6 +52,16 @@
 		</table>
 
 	</form>
+<script type="text/javascript">
+	var s = {
+	    a:123,r:6564
+    };
+
+    var t = new Object();
+	for (var ii in s) {
+	    t[ii] = s[ii]
+    }
+</script>
 </body>
 
 </html>

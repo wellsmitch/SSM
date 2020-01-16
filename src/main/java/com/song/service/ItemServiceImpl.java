@@ -14,12 +14,20 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private UserMapper userMapper;
-	//��ѯ��Ʒ��Ʒ
-	public List<User> selectUser() {
-        return userMapper.findUserById(1);
+
+	public List<User> findAllUser() {
+        return userMapper.findAllUser();
+    }
+
+	public List<User> findUserByUser(User user) {
+        return userMapper.findUserByUser(user);
     }
 
     public void insertUser(User user) {
         userMapper.insertUser(user);
+    }
+
+    public List<User> getUser(Integer id) {
+        return userMapper.findUserById(id);
     }
 }

@@ -16,6 +16,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.14.RELEASE</spring.version>
+        <responseBody.version>2.4.3</responseBody.version>
         <security.version>4.2.5.RELEASE</security.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>2.8.2</log4j.version>
@@ -76,7 +77,19 @@
             <scope>test</scope>
         </dependency>
         <!--spring完-->
+        <!--responseBody-->
 
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <!--responseBody完-->
         <!--mysql-->
         <dependency>
             <groupId>mysql</groupId>

@@ -31,6 +31,15 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--配置跨域-->
+    <filter>
+        <filter-name>corsFilter</filter-name>
+        <filter-class>com.song.filter.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>corsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- 监听spring -->
     <listener>
@@ -69,16 +78,16 @@
     <!-- log4j2-end -->
     <!-- post 乱码处理-start -->
     <!--<filter>-->
-        <!--<filter-name>postEnCoding</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>encoding</param-name>-->
-            <!--<param-value>utf-8</param-value>-->
-        <!--</init-param>-->
+    <!--<filter-name>postEnCoding</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>encoding</param-name>-->
+    <!--<param-value>utf-8</param-value>-->
+    <!--</init-param>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>postEnCoding</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>postEnCoding</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
     <!-- post 乱码处理-end -->
 

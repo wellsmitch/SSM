@@ -36,25 +36,60 @@
         <input id="username" type="text" placeholder="用户名">
         <input id="sex" type="text" placeholder="性别">
         <button id="post">发起post</button>
-        <script type="text/javascript">
-            $('#post').click(function () {
-                $.ajax({
-                    type: "get",
-                    url: "http://localhost:8001/bbb/item/addUser.action",
-                    data: {
-                        username: "aaas",
-                        sex: '男'
-                    },
 
-                    async: true,
-                    success: function (data) {
 
-                    }
-                });
-            });
-        </script>
     </table>
 </form>
+<button id="getJson">获取用户信息http</button>
+<button id="getJsonHttps">获取用户信息https</button>
 </body>
+<script type="text/javascript">
+    $('#post').click(function () {
+        $.ajax({
+            type: "post",
+            <%--url: "${pageContext.request.contextPath}/item/addUser.action",--%>
+            url: "http://localhost:8099/bbb/item/addUser.action",
+            data: {
+                username: "aaas",
+                sex: '男'
+            },
 
+            async: true,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $('#getJson').click(function () {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8099/bbb/item/getUser.action",
+            data: {
+                id: 3,
+                sex: '男'
+            },
+            async: true,
+            success: function (data) {
+                alert(data);
+                console.log(data);
+            }
+        });
+    });
+    $('#getJsonHttps').click(function () {
+        $.ajax({
+            type: "post",
+            url: "https://localhost:8099/bbb/item/getUser.action",
+            data: {
+                id: 3,
+                sex: '男'
+            },
+            async: true,
+            success: function (data) {
+                alert(data);
+                console.log(data);
+            }
+        });
+    });
+</script>
 </html>
