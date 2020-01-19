@@ -23,15 +23,19 @@
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
+                        <!--
+                        此处application/json;charset=UTF-8必须卸载最前面可以将post请求responseBody转成json返回到前端
+                        原因未知
+                        -->
+                        <value>application/json;charset=UTF-8</value>
                         <value>text/html;charset=UTF-8</value>
-                        <value>application/json</value>
                     </list>
                 </property>
-                <property name="features">
-                    <list>
-                        <value>WriteDateUseDateFormat</value>
-                    </list>
-                </property>
+                <!--<property name="features">-->
+                    <!--<list>-->
+                        <!--<value>WriteDateUseDateFormat</value>-->
+                    <!--</list>-->
+                <!--</property>-->
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>

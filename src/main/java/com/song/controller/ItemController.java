@@ -1,21 +1,20 @@
 package com.song.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.song.pojo.User;
 import com.song.service.ItemServiceImpl;
+import com.song.util.SimpleJsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -23,6 +22,9 @@ public class ItemController {
 
     @Autowired
     private ItemServiceImpl itemServiceImpl;
+
+//    @Resource
+//    private SimpleJsonResult simpleJsonResult;
 
     // ���ų����һ
     @RequestMapping(value = "/item/itemlist.action")
@@ -55,17 +57,22 @@ public class ItemController {
 
     @RequestMapping(value = "/item/getUser.action")
     @ResponseBody
-    public List<User> getUserList(Integer id, @ModelAttribute("user") User user, HttpServletRequest request, String a) {
+    public Object getUserList(Integer id, @ModelAttribute("user") User user, HttpServletRequest request, String a) {
+
         System.out.println(request);
         System.out.println(a);
-        List<User> users;
+        List<User> userss;
 
         if (id != null) {
-            users = itemServiceImpl.findUserByUser(user);
-        } else {
-            users = itemServiceImpl.findAllUser();
-        }
+            userss = itemServiceImpl.findUserByUser(user);
 
-        return users;
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            objectMapper.read
+        } else {
+            userss = itemServiceImpl.findAllUser();
+        }
+//        Object userss = new SimpleJsonResult(true, users);
+//        Object userss = JSONArray.toJSON(users);
+        return userss;
     }
 }
