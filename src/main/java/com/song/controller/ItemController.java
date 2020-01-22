@@ -36,6 +36,7 @@ public class ItemController {
 //		mav.addObject("itemList", list);
         //mav.addObject("userList", su);
         mav.setViewName("WEB-INF/jsp/itemList");
+
         return mav;
     }
 
