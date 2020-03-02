@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--加入了判断空字符串的语句，无法比较 java.util.Date类型与 java.lang.Stringd的""-->
+<mapper namespace="com.song.mapper.CovidAndChargeMapper">
+    <select id="findCovidAndChargeAll" resultType="com.song.pojo.CovidAndCharge">
+		select * from COVID c
+	</select>
+
+    <update id="updateCovidAndCharge" parameterType="com.song.pojo.CovidAndCharge">
+
+        <!--<if test="!(!(heNanRes != null and heNanRes != '') and !(heNanRes != null and heNanRes != '') and !(zhengZhouRes != null and zhengZhouRes != '') and !(dianfei != null and dianfei != ''))">-->
+        update COVID
+        <trim prefix="set" suffixOverrides=",">
+
+
+            <if test="heNanRes != null and heNanRes != ''">
+                heNanRes = #{heNanRes},
+            </if>
+
+            <if test="zhengZhouRes != null and zhengZhouRes != ''">
+                zhengZhouRes = #{zhengZhouRes},
+            </if>
+
+            <if test="dianfei != null and dianfei != ''">
+                dianfei = #{dianfei},
+            </if>
+        </trim>
+        <where>
+            <if test="time != null">
+                time = #{time}
+            </if>
+        </where>
+        <!--</if>-->
+    </update>
+</mapper>

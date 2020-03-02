@@ -259,6 +259,12 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!--  用处未知   学习ReflectionToStringBuilder  -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
 
     </dependencies>
 

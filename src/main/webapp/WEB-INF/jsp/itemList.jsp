@@ -34,14 +34,21 @@
             </tr>
         </c:forEach>
         <input id="username" type="text" placeholder="用户名">
+        <input id="password" type="password" placeholder="请输入密码">
         <input id="sex" type="text" placeholder="性别">
         <button id="post">发起post</button>
-
+        <input type="text" id="TIME" placeholder="时间。。。">
+        <input type="text" id="HENAN" placeholder="HENAN">
+        <input type="text" id="ZHENGZHOU" placeholder="ZHENGZHOU">
+        <input type="text" id="DIANFEI" placeholder="DIANFEI">
 
     </table>
 </form>
 <button id="getJson">获取用户信息http</button>
+<button id="register">注册用户信息http</button>
 <button id="getJsonHttps">获取用户信息https</button>
+<button id="getCovid">获取用户信息Covid</button>
+<button id="updateCovid">更新Covid信息</button>
 </body>
 <script type="text/javascript">
     $('#post').click(function () {
@@ -64,7 +71,37 @@
     $('#getJson').click(function () {
         $.ajax({
             type: "post",
-            url: "http://localhost:8099/bbb/item/getUser.action",
+            url: "http://localhost:8099/bbb/item/userLogin.action",
+            // url: "http://localhost:8099/bbb/item/getUser.action",
+            data: {
+                username: $("#username").val(),
+                password:  $("#password").val()
+            },
+            async: true,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+    $('#register').click(function () {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8099/bbb/item/userRegister.action",
+            // url: "http://localhost:8099/bbb/item/getUser.action",
+            data: {
+                username: $("#username").val(),
+                password:  $("#password").val()
+            },
+            async: true,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+    $('#getJsonHttps').click(function () {
+        $.ajax({
+            type: "post",
+            url: "https://localhost/bbb/item/getUser.action",
             data: {
                 id: 3,
                 sex: '男'
@@ -76,17 +113,39 @@
             }
         });
     });
-    $('#getJsonHttps').click(function () {
+    $('#getCovid').click(function () {
         $.ajax({
             type: "post",
-            url: "https://localhost:8099/bbb/item/getUser.action",
-            data: {
-                id: 3,
-                sex: '男'
-            },
+            url: "http://localhost:8099/bbb/item/getCovid.action",
             async: true,
+            dataType: 'json',
             success: function (data) {
-                alert(data);
+                console.log(data);
+            }
+        });
+    });
+    $('#updateCovid').click(function () {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8099/bbb/item/updateCovid.action",
+            async: true,
+            contentType:'application/json; charset=utf-8',
+            // contentIype: 'application/x-www-form-urlencoded',
+            data:
+                JSON.stringify(
+                {
+                    dianfei: $('#DIANFEI').val(),
+                    time: $('#TIME').val(),
+                    heNanRes: $('#HENAN').val(),
+                    zhengZhouRes: $('#ZHENGZHOU').val(),
+                    zhengzhouInc: 12,
+                    henNanInc: 12,
+                    id: 1
+                }
+            )
+                ,
+            dataType: 'json',
+            success: function (data) {
                 console.log(data);
             }
         });

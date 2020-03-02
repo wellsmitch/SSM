@@ -1,5 +1,8 @@
 package com.song.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import org.springframework.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -125,11 +128,14 @@ public class AjaxHttp {
 
     public static void main(String[] args) {
         // 发送 GET 请求
-        String result = AjaxHttp.sendGet("https://www.wellsmitch.top/bbb/item/getUser.action",null);
-        System.out.println("result: " + result);
-        System.out.println("-----------------------------------------------------");
+//        String result = AjaxHttp.sendGet("https://www.wellsmitch.top/bbb/item/getUser.action",null);
+//        System.out.println("result: " + result);
+//        System.out.println("-----------------------------------------------------");
         // 发送 POST 请求
-        String sr = AjaxHttp.sendPost("https://www.wellsmitch.top/bbb/item/getUser.action", "id=3&sex='男'");
-        System.out.println("sr: " + sr);
+//        String sr = AjaxHttp.sendPost("http://www.wellsmitch.top:8082/bbb/item/getUser.action", "id=3&sex='男'");
+//        System.out.println("sr: " + sr);
+        Object y = "";
+        Boolean b = StringUtils.isEmpty(y);
+        System.out.println(b);
     }
 }

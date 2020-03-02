@@ -22,16 +22,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              u.id = #{id}
             </if>
             <if test="username != null and username !='' ">
-                or  u.username = #{username}
+                and  u.username = #{username}
+            </if>
+            <if test="password != null and password !='' ">
+                and  u.password = #{password}
             </if>
             <if test="sex != null and sex !='' ">
-                or  u.sex = #{sex}
+                and  u.sex = #{sex}
             </if>
             <if test="address != null and address !=''">
-                or u.address = #{address}
+                and u.address = #{address}
             </if>
             <if test="date != null and date !=''">
-                or u.date = #{date}
+                and u.date = #{date}
             </if>
         </where>
 	</select>

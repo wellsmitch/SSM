@@ -10,6 +10,36 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String username;
+    private String nickName;
+
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    private Integer age;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 	private String sex;
 	private String address;
 	private Date date;
