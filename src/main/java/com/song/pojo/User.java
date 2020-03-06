@@ -1,5 +1,7 @@
 package com.song.pojo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -11,6 +13,17 @@ public class User implements Serializable{
 	private Integer id;
 	private String username;
     private String nickName;
+    private String password;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    private MultipartFile file;
 
 
     public String getNickName() {
@@ -39,7 +52,6 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    private String password;
 	private String sex;
 	private String address;
 	private Date date;
