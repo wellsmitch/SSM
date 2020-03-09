@@ -21,7 +21,7 @@ public class FileReaderDemo2 {
         char[] chs = new char[1024]; // 可以是1024及其整数倍
         int len;
         while ((len = fr.read(chs)) != -1) {
-            System.out.print(new String(chs, 0, len));
+            System.out.print(new String(chs, 0, len));//new String(tmp,1,nlen,"UTF8")就是将字节数组tmp从索引的第1位取nlen长度后组成字符串，切组成后的字符串按照utf8的字符集编码，够详细了吧
         }
         fr.close();
     }

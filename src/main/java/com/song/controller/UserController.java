@@ -21,13 +21,18 @@ public class UserController {
     // 查询用户
     @RequestMapping(value = "/item/userLogin.action")
     @ResponseBody
-    public Object userLoginRes(Integer id, @ModelAttribute("user") User user, String username, Integer password, HttpServletRequest httpServletRequest,MultipartFile file) throws IOException {//,@RequestBody User users_
+    public Object userLoginRes(Integer id, @ModelAttribute("user") User user, String username, String password, HttpServletRequest httpServletRequest,MultipartFile file) throws IOException {//,@RequestBody User users_
 //        System.out.println(users_);
         System.out.println(httpServletRequest);
         String s1 = httpServletRequest.getParameter("username");
-        String txg = new String(file.getBytes());
+        System.out.println();
+        if (file!=null) {
+            String txg = new String(file.getBytes());
+            System.out.println(txg);
+        }
+
         System.out.println(s1);
-        System.out.println(txg);
+
         System.out.println("------------------");
         if (username != null && password!= null) {
             return new SimpleJsonResult(true, userServiceImpl.findUserByUser(user));

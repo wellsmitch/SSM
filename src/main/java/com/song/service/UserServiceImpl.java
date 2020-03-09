@@ -19,4 +19,8 @@ public class UserServiceImpl {
         userMapper.insertUser(user);
         return "SUCCESS";
     }
+    public List<User> findAllUserImp() {
+        List<User> allUser = userMapper.findAllUser();
+        return allUser;
+    }
 }

@@ -301,7 +301,51 @@
             <version>4.12</version>
         </dependency>
         <!--  PDF end  -->
+        <!--  net.sf.json.JSONObject maven依赖 start  -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
 
+        <!--  net.sf.json.JSONObject maven依赖 end  -->
+
+        <!--  Gson [Maven依赖] com.google.gson.JsonObject; maven依赖 start  -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
+        <!--  Gson [Maven依赖] com.google.gson.JsonObject; maven依赖 end  -->
+
+        <!-- WebSocket 开始-->
+        <dependency>
+
+            <groupId>javax.websocket</groupId>
+
+            <artifactId>javax.websocket-api</artifactId>
+
+            <version>1.1</version>
+
+            <scope>provided</scope>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>javax</groupId>
+
+            <artifactId>javaee-api</artifactId>
+
+            <version>7.0</version>
+
+            <scope>provided</scope>
+
+        </dependency>
+
+        <!-- WebSocket 结束-->
 
     </dependencies>
 

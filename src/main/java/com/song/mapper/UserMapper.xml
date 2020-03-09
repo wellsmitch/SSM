@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user_login where id = #{v}
 	</select>
 
-    <select id="findAllUser" parameterType="com.song.pojo.User" resultType="User">
+    <select id="findAllUser" resultType="User">
 		select * from user_login
 	</select>
 
