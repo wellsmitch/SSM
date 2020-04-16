@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@ServerEndpoint("/webSocket/{username}")
+@ServerEndpoint("/webSocket1/{username}")
 public class WebSocket {
     private static int onlineCount = 0;
     private static Map<String, WebSocket> clients = new ConcurrentHashMap<String, WebSocket>();

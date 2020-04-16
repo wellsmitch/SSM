@@ -14,29 +14,46 @@
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
                 <property name="supportedMediaTypes">
                     <list>
-                        <value>application/json;charset=UTF-8</value>
-                    </list>
-                </property>
-            </bean>
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <!--
-                        此处application/json;charset=UTF-8必须卸载最前面可以将post请求responseBody转成json返回到前端
-                        原因未知
-                        -->
-                        <value>application/json;charset=UTF-8</value>
+                        <value>text/plain;charset=UTF-8</value>
                         <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
-                <!--<property name="features">-->
-                    <!--<list>-->
-                        <!--<value>WriteDateUseDateFormat</value>-->
-                    <!--</list>-->
-                <!--</property>-->
             </bean>
+            <!--<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        &lt;!&ndash;
+                        此处application/json;charset=UTF-8必须写在最前面可以将post请求responseBody转成json返回到前端
+                        原因未知
+                        &ndash;&gt;
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+               <property name="features">
+                    <list>
+                        <value>WriteDateUseDateFormat</value>
+                    </list>
+                </property>
+            </bean>-->
+            <!--2020/4/15 添加的 start-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+               <!-- <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>-->
+            </bean>
+            <!--2020/4/15 添加的 end-->
+
         </mvc:message-converters>
     </mvc:annotation-driven>
     <!--访问需要访问的映射之前,先加载静态资源-->

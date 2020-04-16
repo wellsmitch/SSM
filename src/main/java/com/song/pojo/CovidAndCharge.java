@@ -1,21 +1,27 @@
 package com.song.pojo;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Column;
 import java.util.Date;
 
 public class CovidAndCharge {
     /**
      *
      */
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4517148792211901384L;
 
     private Integer id;
-    private String zhengzhouInc;
-    private String henNanInc;
-    private String heNanRes;
-    private String zhengZhouRes;
-    private String dianfei;
-    private Date time;
+    private Integer zhengzhouInc;
+    private Integer heNanInc;
+    private Integer heNanRes;
+
+
+    private Integer zhengZhouRes;
+    private Integer dianfei;
 
     public Integer getId() {
         return id;
@@ -25,53 +31,67 @@ public class CovidAndCharge {
         this.id = id;
     }
 
-    public String getZhengzhouInc() {
+    public Integer getZhengzhouInc() {
         return zhengzhouInc;
     }
 
-    public void setZhengzhouInc(String zhengzhouInc) {
+    public void setZhengzhouInc(Integer zhengzhouInc) {
         this.zhengzhouInc = zhengzhouInc;
     }
 
-    public String getHenNanInc() {
-        return henNanInc;
+    public Integer getHeNanInc() {
+        return heNanInc;
     }
 
-    public void setHenNanInc(String henNanInc) {
-        this.henNanInc = henNanInc;
+    public void setHeNanInc(Integer heNanInc) {
+        this.heNanInc = heNanInc;
     }
 
-    public String getHeNanRes() {
+    public Integer getHeNanRes() {
         return heNanRes;
     }
 
-    public void setHeNanRes(String heNanRes) {
+    public void setHeNanRes(Integer heNanRes) {
         this.heNanRes = heNanRes;
     }
 
-    public String getZhengZhouRes() {
+    public Integer getZhengZhouRes() {
         return zhengZhouRes;
     }
 
-    public void setZhengZhouRes(String zhengZhouRes) {
+    public void setZhengZhouRes(Integer zhengZhouRes) {
         this.zhengZhouRes = zhengZhouRes;
     }
 
-    public String getDianfei() {
+    public Integer getDianfei() {
         return dianfei;
     }
 
-    public void setDianfei(String dianfei) {
+    public void setDianfei(Integer dianfei) {
         this.dianfei = dianfei;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDateData() {
+        return dateData;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setDateData(Date dateData) {
+        this.dateData = dateData;
     }
+
+
+    public float getElectronicCharge() {
+        return electronicCharge;
+    }
+
+    public void setElectronicCharge(float electronicCharge) {
+        this.electronicCharge = electronicCharge;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateData;
+    private float electronicCharge;
 
 
 }

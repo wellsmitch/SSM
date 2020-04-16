@@ -18,4 +18,10 @@ public class CovidAndChargeServiceImp {
     public Boolean updateCovidAndCharge(CovidAndCharge c) {
         return cac.updateCovidAndCharge(c);
     }
+    public Boolean insertCovidAndCharge(CovidAndCharge c) {
+        return cac.insertCovidAndCharge(c);
+    }
+    public Boolean deleteCovidAndCharge(CovidAndCharge c) {
+        return cac.deleteCovidAndCharge(c);
+    }
 }

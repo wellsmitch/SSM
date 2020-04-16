@@ -10,10 +10,58 @@ public class User implements Serializable{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    private String uuid;
 	private Integer id;
 	private String username;
     private String nickName;
     private String password;
+    private String qqcode;
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    private String openid;
+    private String QQPicURL;
+
+    public String getQqcode() {
+        return qqcode;
+    }
+
+    public void setQqcode(String qqcode) {
+        this.qqcode = qqcode;
+    }
+
+    public String getQQPicURL() {
+        return QQPicURL;
+    }
+
+    public void setQQPicURL(String QQPicURL) {
+        this.QQPicURL = QQPicURL;
+    }
+
+    public String getQQpic() {
+        return QQpic;
+    }
+
+    public void setQQpic(String QQpic) {
+        this.QQpic = QQpic;
+    }
+
+    private String QQpic;
 
     public MultipartFile getFile() {
         return file;
@@ -54,7 +102,7 @@ public class User implements Serializable{
 
 	private String sex;
 	private String address;
-	private Date date;
+	private Date datee;
 
 
 
@@ -105,22 +153,17 @@ public class User implements Serializable{
 	}
 
 
+    public Date getDatee() {
+        return datee;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setDatee(Date datee) {
+        this.datee = datee;
+    }
 
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
-
-	@Override
+    @Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", sex=" + sex + ", address=" + address + ", date=" + date
+		return "User [id=" + id + ", username=" + username + ", sex=" + sex + ", address=" + address + ", datee=" + datee
 				+ "]";
 	}
 

@@ -9,13 +9,17 @@
 		select * from COVID c
 	</select>
 
+    <delete id="deleteCovidAndCharge" parameterType="com.song.pojo.CovidAndCharge">
+        delete from COVID where dateData = DATE_FORMAT(#{dateData},'%Y-%m-%d')
+	</delete>
+
+
+
     <update id="updateCovidAndCharge" parameterType="com.song.pojo.CovidAndCharge">
 
         <!--<if test="!(!(heNanRes != null and heNanRes != '') and !(heNanRes != null and heNanRes != '') and !(zhengZhouRes != null and zhengZhouRes != '') and !(dianfei != null and dianfei != ''))">-->
         update COVID
         <trim prefix="set" suffixOverrides=",">
-
-
             <if test="heNanRes != null and heNanRes != ''">
                 heNanRes = #{heNanRes},
             </if>
@@ -25,14 +29,74 @@
             </if>
 
             <if test="dianfei != null and dianfei != ''">
-                dianfei = #{dianfei},
+                dianfei = #{dianfei}
             </if>
         </trim>
         <where>
-            <if test="time != null">
-                time = #{time}
+            <if test="dateData != null">
+                dateData = #{dateData}
             </if>
         </where>
         <!--</if>-->
     </update>
+
+    <insert id="insertCovidAndCharge" parameterType="com.song.pojo.CovidAndCharge">
+        INSERT INTO COVID
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zhengzhouInc != null and zhengzhouInc != ''">
+                zhengzhouInc,
+            </if>
+
+            <if test="heNanInc != null and heNanInc != ''">
+                heNanInc,
+            </if>
+
+            <if test="heNanRes != null and heNanRes != ''">
+                heNanRes,
+            </if>
+
+            <if test="zhengZhouRes != null and zhengZhouRes != ''">
+                zhengZhouRes,
+            </if>
+
+            <if test="dianfei != null and dianfei != ''">
+                dianfei,
+            </if>
+
+            <if test="electronicCharge != null and electronicCharge != ''">
+                electronicCharge,
+            </if>
+            <if test="dateData != null">
+                dateData
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zhengzhouInc != null and zhengzhouInc != ''">
+                #{zhengzhouInc},
+            </if>
+
+            <if test="heNanInc != null and heNanInc != ''">
+                #{heNanInc},
+            </if>
+
+            <if test="heNanRes != null and heNanRes != ''">
+                #{heNanRes},
+            </if>
+
+            <if test="zhengZhouRes != null and zhengZhouRes != ''">
+                #{zhengZhouRes},
+            </if>
+
+            <if test="dianfei != null and dianfei != ''">
+                #{dianfei},
+            </if>
+            <if test="electronicCharge != null and electronicCharge != ''">
+                #{electronicCharge},
+            </if>
+            <if test="dateData != null">
+                DATE_FORMAT(#{dateData},'%Y-%m-%d')
+            </if>
+        </trim>
+    </insert>
 </mapper>

@@ -46,13 +46,13 @@
 
     //连接成功建立的回调方法
 
-    websocket.onopen = function () {
+    /*websocket.onopen = function () {
 
         console.log("WebSocket连接成功");
 
         setMessageInnerHTML("WebSocket连接成功");
 
-    };
+    };*/
 
 
     //接收到消息的回调方法

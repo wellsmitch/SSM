@@ -24,24 +24,102 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="username != null and username !='' ">
                 and  u.username = #{username}
             </if>
+            <if test="nickName != null and nickName !='' ">
+                and  u.nickName = #{nickName}
+            </if>
             <if test="password != null and password !='' ">
                 and  u.password = #{password}
             </if>
             <if test="sex != null and sex !='' ">
                 and  u.sex = #{sex}
             </if>
+            <if test="qqcode != null and qqcode !='' ">
+                and  u.qqcode = #{qqcode}
+            </if>
+            <if test="openid != null and openid !=''">
+                and u.openid = #{openid}
+            </if>
             <if test="address != null and address !=''">
                 and u.address = #{address}
             </if>
-            <if test="date != null and date !=''">
-                and u.date = #{date}
+            <if test="datee != null and datee !=''">
+                and u.datee = #{datee}
             </if>
         </where>
 	</select>
 
     <insert id="insertUser"  parameterType="com.song.pojo.User" >
-        insert into user_login(username,sex)
-        values(#{sex},#{username})
+        insert into user_login
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if  test="uuid != null and uuid !=''">
+                uuid,
+            </if>
+          <if  test="username != null and username !=''">
+              username,
+          </if>
+          <if  test="password != null and password !=''">
+              password,
+          </if>
+
+          <if  test="qqcode != null and qqcode !=''">
+              qqcode,
+          </if>
+
+          <if  test="openid != null and openid !=''">
+                openid,
+          </if>
+          <if  test="QQPicURL != null and QQPicURL !=''">
+              QQPicURL,
+          </if>
+          <if  test="nickName != null and nickName !=''">
+              nickName,
+          </if>
+          <if  test="sex != null and sex !=''">
+              sex,
+          </if>
+          <if  test="address != null and address !=''">
+                address,
+          </if>
+          <if  test="datee != null and datee !=''">
+                datee,
+          </if>
+          <if  test="age != null and age !=''">
+              age,
+          </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if  test="uuid != null and uuid !=''">
+                #{uuid},
+            </if>
+            <if  test="username != null and username !=''">
+                #{username},
+            </if>
+            <if  test="password != null and password !=''">
+                #{password},
+            </if>
+            <if  test="qqcode != null and qqcode !=''">
+                #{qqcode},
+            </if>
+            <if  test="openid != null and openid !=''">
+                #{openid},
+            </if>
+            <if  test="QQPicURL != null and QQPicURL !=''">
+                #{QQPicURL},
+            </if>
+            <if  test="nickName != null and nickName !=''">
+                #{nickName},
+            </if>
+            <if  test="sex != null and sex !=''">
+                #{sex},
+            </if><if  test="address != null and address !=''">
+                #{address},
+            </if><if  test="datee != null and datee !=''">
+                #{datee},
+            </if><if  test="age != null and age !=''">
+                #{age},
+            </if>
+        </trim>
     </insert>
 
 </mapper>
