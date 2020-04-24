@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.song.mapper.WxMapper">
+    <select id="findAllWx" resultType="WeiXin">
+		select * from wxToken order by id desc limit 1
+	</select>
+
+    <insert id="insertWx"  parameterType="com.song.pojo.WeiXin" >
+        insert into wxToken
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if  test="timestamp != null and timestamp !=''">
+                timestamp,
+            </if>
+            <if  test="nonce != null and nonce !=''">
+                nonce,
+            </if>
+            <if  test="signature != null and signature !=''">
+                signature,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if  test="timestamp != null and timestamp !=''">
+                #{timestamp},
+            </if>
+            <if  test="nonce != null and nonce !=''">
+                #{nonce},
+            </if>
+            <if  test="signature != null and signature !=''">
+                #{signature},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

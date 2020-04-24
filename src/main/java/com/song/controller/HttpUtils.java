@@ -1,7 +1,8 @@
 package com.song.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
@@ -13,7 +14,8 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-public class AjaxHttp {
+@Component
+public class HttpUtils {
     /**
      * 向指定URL发送GET方法的请求
      *
@@ -24,6 +26,7 @@ public class AjaxHttp {
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
+        System.out.println("param=========="+param);
         String result = "";
         BufferedReader in = null;
         try {
@@ -125,25 +128,5 @@ public class AjaxHttp {
             }
         }
         return result;
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        // 发送 GET 请求
-//        String result = AjaxHttp.sendGet("https://www.wellsmitch.top/bbb/item/getUser.action",null);
-//        String result = AjaxHttp.sendGet("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxbba0b486dc5184da&secret=1f84c124d271f5e085fc6732d30f1434",null);
-//        System.out.println("result: " + result);
-        String json = "{\"abc\":1,\"hahah\":2}";
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        String st = jsonObject.getString("access_token");
-        System.out.println(st);
-        System.out.println("-----------------------------------------------------");
-        // 发送 POST 请求
-//        String sr = AjaxHttp.sendPost("http://www.wellsmitch.top:8082/bbb/item/getUser.action", "id=3&sex='男'");
-//        System.out.println("sr: " + sr);
-        Object y = "";
-
-//        Boolean b = StringUtils.isEmpty(y);
-//        System.out.println(b);
-
     }
 }
