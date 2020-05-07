@@ -8,10 +8,12 @@ import com.song.service.WxServiceImpl;
 import com.song.util.JssdkConfig;
 import com.song.util.WeixinCheckoutUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,12 @@ import java.util.TimerTask;
 
 @Controller
 public class WeixinCheckController {
+//
+//    @Value("${wxAppId}")
+//    String appId;
+//
+//    @Value("${wxSecret}")
+//    String wxSecret;
 
     @Autowired
     JssdkConfig jssdkConfig;
@@ -133,7 +141,6 @@ public class WeixinCheckController {
 
         if (checkCode == null) {
             System.out.println("jinlaile=========");
-
 
             String result = httpUtils.sendGet("https://api.weixin.qq.com/cgi-bin/token", "grant_type=client_credential&appid=wxbba0b486dc5184da&secret=1f84c124d271f5e085fc6732d30f1434");
             JSONObject jsonObject = JSONObject.parseObject(result);
