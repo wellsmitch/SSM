@@ -17,10 +17,10 @@ import java.util.Date;
 @Controller
 public class UploadSelfFilesController {
 
-    @RequestMapping("/getWxInfo")
+    @RequestMapping("/uploadFile")
     @ResponseBody
-    public Message getWxInfo(MultipartFile file, HttpServletRequest request){
-       /* String realpath="";
+    public Message upload(MultipartFile file, HttpServletRequest request) throws Exception {
+
         //获取文件名
         String name="";
         if (file != null) {
@@ -38,7 +38,7 @@ public class UploadSelfFilesController {
             }
             file.transferTo(file1);//保存文件
 //            file.transferTo(new File(file1 + "\\" + fileName + "." + subffix));//保存文件
-        }*/
+        }
         return Message.success("上传成功");
     }
 }
