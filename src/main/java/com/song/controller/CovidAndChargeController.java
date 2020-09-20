@@ -1,6 +1,7 @@
 package com.song.controller;
 
 import com.song.pojo.CovidAndCharge;
+import com.song.pojo.ReadhubFavorite;
 import com.song.service.CovidAndChargeServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +36,16 @@ public class CovidAndChargeController {
         cac = covidAndCharge_.updateCovidAndCharge(covi);
 //        return cac;
     }
+    @RequestMapping(value = "item/getFavoriteList1.action")
+    @ResponseBody
+    public SimpleJsonResult getFavoriteList(String openId){
+        List<ReadhubFavorite> cac = null;
+        openId += "iopaasd";
+        System.out.println(openId);
+//        cac = readhubFavoriteServiceImpl.findReadhubFavoriteList(r);
+        return new SimpleJsonResult(true, cac);
+    }
+
 
     @RequestMapping(value = "item/deleteCovid.action")
     @ResponseBody

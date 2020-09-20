@@ -36,6 +36,7 @@ public class UploadSelfFilesController {
             if (!file1.exists()) {//目录不存在就创建
                 file1.mkdirs();
             }
+
             file.transferTo(file1);//保存文件
 //            file.transferTo(new File(file1 + "\\" + fileName + "." + subffix));//保存文件
         }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--加入了判断空字符串的语句，无法比较 java.util.Date类型与 java.lang.Stringd的""-->
+<mapper namespace="com.song.mapper.ReadhubFavoriteMapper">
+    <select id="findReadhubFavorite" resultType="com.song.pojo.ReadhubFavorite">
+        select * from readhubFavorite c where openId = #{openId}
+    </select>
+
+    <delete id="deleteReadhubFavorite" parameterType="com.song.pojo.ReadhubFavorite">
+        delete from readhubFavorite where newOrder = #{newOrder} and openId = #{openId}
+    </delete>
+
+    <insert id="insertReadhubFavorite" parameterType="com.song.pojo.ReadhubFavorite">
+        INSERT INTO readhubFavorite
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newOrder != null and newOrder != ''">
+                newOrder,
+            </if>
+
+            <if test="openid != null and openid != ''">
+                openid
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newOrder != null and newOrder != ''">
+                #{newOrder},
+            </if>
+
+            <if test="openid != null and openid != ''">
+                #{openid},
+            </if>
+        </trim>
+    </insert>
+</mapper>
