@@ -33,6 +33,10 @@ public class UploadSelfFilesController {
 //            String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());//文件保存进来，我给他重新命名，数据库保存有原本的名字，所以输出的时候再把他附上原本的名字就行了。
             String filepath = request.getServletContext().getRealPath("/") + "files\\";//获取项目路径到webapp
             File file1 = new File(filepath);
+            System.out.println("aaa/bbb/ccc");
+            String url1 = String.valueOf(request.getRequestURL());
+            System.out.println(url1.substring(url1.lastIndexOf("/") + 1));
+
             if (!file1.exists()) {//目录不存在就创建
                 file1.mkdirs();
             }

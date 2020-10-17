@@ -33,6 +33,7 @@ public class HaoMusicListController {
             if (isFirst) {
                 if (selec.indexOf('.') == -1) {
                     elementsPrev = document.select('[' + selec + ']');
+
                 }else {
                     elementsPrev = document.select(selec);
                 }
@@ -54,5 +55,11 @@ public class HaoMusicListController {
             }
         }
         return songList;
+    }
+
+    public static void main(String[] args) {
+        Document document = Jsoup.parse("<div class='a'><a class='b'></a></div>");
+        Elements select = document.select(".a.b");
+        System.out.println(select);
     }
 }

@@ -130,8 +130,9 @@ public class AjaxHttp {
     public static void main(String[] args) throws InterruptedException {
         // 发送 GET 请求
 //        String result = AjaxHttp.sendGet("https://www.wellsmitch.top/bbb/item/getUser.action",null);
+        String result = AjaxHttp.sendGet("https://cdn2.tukuppt.com/202005190904/ee2491f405adde94522313facbb37eb0/font_temp/20200307/5e62f9f16bc581583544817.ttf",null);
 //        String result = AjaxHttp.sendGet("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxbba0b486dc5184da&secret=1f84c124d271f5e085fc6732d30f1434",null);
-//        System.out.println("result: " + result);
+        System.out.println("result: " + result);
         String json = "{\"abc\":1,\"hahah\":2}";
         JSONObject jsonObject = JSONObject.parseObject(json);
         String st = jsonObject.getString("access_token");

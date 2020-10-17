@@ -49,8 +49,27 @@
 <button id="getJsonHttps">获取用户信息https</button>
 <button id="getCovid">获取用户信息Covid</button>
 <button id="updateCovid">更新Covid信息</button>
+<input type="file" id="file">
+<button id="uploadFile">上传文件</button>
 </body>
 <script type="text/javascript">
+    //upload
+    $('#uploadFile').click(function () {
+        var fm = new FormData();
+        console.log($("#file")[0].files);
+        fm.append("file", $("#file")[0].files[0]);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8099/bbb/uploadFile.action",
+            data: fm,
+            async: true,
+            processData:false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
     $('#post').click(function () {
         $.ajax({
             type: "post",
@@ -75,7 +94,7 @@
             // url: "http://localhost:8099/bbb/item/getUser.action",
             data: {
                 username: $("#username").val(),
-                password:  $("#password").val()
+                password: $("#password").val()
             },
             async: true,
             success: function (data) {
@@ -90,7 +109,7 @@
             // url: "http://localhost:8099/bbb/item/getUser.action",
             data: {
                 username: $("#username").val(),
-                password:  $("#password").val()
+                password: $("#password").val()
             },
             async: true,
             success: function (data) {
@@ -129,21 +148,21 @@
             type: "post",
             url: "http://localhost:8099/bbb/item/updateCovid.action",
             async: true,
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             // contentIype: 'application/x-www-form-urlencoded',
             data:
                 JSON.stringify(
-                {
-                    dianfei: $('#DIANFEI').val(),
-                    time: $('#TIME').val(),
-                    heNanRes: $('#HENAN').val(),
-                    zhengZhouRes: $('#ZHENGZHOU').val(),
-                    zhengzhouInc: 12,
-                    henNanInc: 12,
-                    id: 1
-                }
-            )
-                ,
+                    {
+                        dianfei: $('#DIANFEI').val(),
+                        time: $('#TIME').val(),
+                        heNanRes: $('#HENAN').val(),
+                        zhengZhouRes: $('#ZHENGZHOU').val(),
+                        zhengzhouInc: 12,
+                        henNanInc: 12,
+                        id: 1
+                    }
+                )
+            ,
             dataType: 'json',
             success: function (data) {
                 console.log(data);

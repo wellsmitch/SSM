@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.swing.text.Document;
 import java.util.List;
 
 @Controller
@@ -17,13 +18,14 @@ public class ReadHubController {
     @Autowired
     ReadhubFavoriteServiceImpl readhubFavoriteServiceImpl;
 
-    @RequestMapping(value = "item/getFavoriteList.action")
+    @RequestMapping(value = "item/getFavoriteList")
     @ResponseBody
     public SimpleJsonResult getFavoriteList(ReadhubFavorite r){
         List<ReadhubFavorite> cac = null;
         cac = readhubFavoriteServiceImpl.findReadhubFavoriteList(r);
         return new SimpleJsonResult(true, cac);
     }
+
 
     @RequestMapping(value = "asaa/getFavoriteList.action")
     @ResponseBody

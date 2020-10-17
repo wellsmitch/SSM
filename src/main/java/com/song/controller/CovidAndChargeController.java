@@ -28,6 +28,14 @@ public class CovidAndChargeController {
         return cac;
     }
 
+    @RequestMapping(value = "getCovid.action")
+    @ResponseBody
+    public Object userLoginRes1() {
+        List<CovidAndCharge> cac = null;
+        cac = covidAndCharge_.findCovidAndChargeAll();
+        return cac;
+    }
+
     @RequestMapping(value = "item/updateCovid.action")
     @ResponseBody
     public void updateCovidMethod(@RequestBody CovidAndCharge covi) {//@ModelAttribute("CovidAndCharge") CovidAndCharge covi
