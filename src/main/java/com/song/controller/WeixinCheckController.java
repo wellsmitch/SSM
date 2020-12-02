@@ -7,20 +7,21 @@ import com.song.pojo.WeiXin;
 import com.song.service.WxServiceImpl;
 import com.song.util.JssdkConfig;
 import com.song.util.WeixinCheckoutUtil;
+import org.jsoup.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import java.net.URLDecoder;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.logging.Logger;
 
 @Controller
 public class WeixinCheckController {
@@ -38,6 +39,7 @@ public class WeixinCheckController {
     HttpUtils httpUtils;
     @Autowired
     WxServiceImpl userServiceImpl;
+
 
     /**
      * 微信公众号签名认证接口
@@ -133,17 +135,78 @@ public class WeixinCheckController {
         }*/
     }
 
+
+    @RequestMapping("/getConfigInfoOfZy")
+    @ResponseBody
+    public Message getConfigInfoOfZy(String url, HttpSession httpSession) {
+        String checkCodeZy = null;
+        String appId = "wx3965f3eda47c73df";
+        checkCodeZy = (String) httpSession.getAttribute("checkCodeZy");
+        System.out.println(123456789);
+        System.out.println("getConfigInfoOfZy--checkCode" + checkCodeZy);
+        System.out.println(checkCodeZy == null);
+        System.out.println(checkCodeZy == "");
+        if (StringUtil.isBlank(checkCodeZy)) {
+            System.out.println("getConfigInfoOfZy--jinlaile=========");
+            String result = httpUtils.sendGet("https://api.weixin.qq.com/cgi-bin/token", "grant_type=client_credential&appid=" + appId + "&secret=802e923c8ce45ead18a11aa42fc8681c");
+            JSONObject jsonObject = JSONObject.parseObject(result);
+            Set<Map.Entry<String, Object>> entries = jsonObject.entrySet();
+            String access_token = jsonObject.getString("access_token");
+
+            System.out.println("getConfigInfoOfZy--result============" + result);
+
+            String result1 = httpUtils.sendGet("https://api.weixin.qq.com/cgi-bin/ticket/getticket", "access_token=" + access_token + "&type=jsapi");
+            System.out.println("getConfigInfoOfZy--result1============" + result1);
+
+            JSONObject jsonObject1 = JSONObject.parseObject(result1);
+            String ticket = jsonObject1.getString("ticket");
+            System.out.println("getConfigInfoOfZy--ticket============" + ticket);
+
+
+            httpSession.setAttribute("checkCodeZy", ticket);
+            checkCodeZy = (String) httpSession.getAttribute("checkCodeZy");
+            System.out.println("getConfigInfoOfZy--checkCodecheckCodecheckCode===" + checkCodeZy);
+            try {
+                Timer timer = new Timer();
+                //TimerTask实现5分钟后从session中删除checkCode
+
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        httpSession.removeAttribute("checkCodeZy");
+                        System.out.println("getConfigInfoOfZy--checkCode删除成功=========checkCode删除成功");
+                        timer.cancel();
+                    }
+                }, 1000 * 7000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            checkCodeZy = (String) httpSession.getAttribute("checkCodeZy");
+        }
+
+        System.out.println("getConfigInfoOfZy--aaa=======" + checkCodeZy);
+
+        try {
+            Map<String, String> configMap = JssdkConfig.jsSDK_Sign(URLDecoder.decode(url,"UTF-8"), checkCodeZy, appId);
+            return Message.success(configMap);
+        } catch (Exception e) {
+            return Message.err("getConfigInfoOfZy--有异常出现");
+        }
+    }
+
+
     @RequestMapping("/getConfigInfo")
     @ResponseBody
     public Message getConfigInfo(String url, HttpSession httpSession) {
-        String checkCode = null;
-        checkCode = (String) httpSession.getAttribute("checkCode");
+        String mycheckCode = null;
+        mycheckCode = (String) httpSession.getAttribute("checkCode");
 
-        if (checkCode == null) {
+        if (mycheckCode == null) {
             System.out.println("jinlaile=========");
-
             String result = httpUtils.sendGet("https://api.weixin.qq.com/cgi-bin/token", "grant_type=client_credential&appid=wxbba0b486dc5184da&secret=1f84c124d271f5e085fc6732d30f1434");
             JSONObject jsonObject = JSONObject.parseObject(result);
+            Set<Map.Entry<String, Object>> entries = jsonObject.entrySet();
             String access_token = jsonObject.getString("access_token");
 
             System.out.println("result============" + result);
@@ -156,31 +219,34 @@ public class WeixinCheckController {
             System.out.println("ticket============" + ticket);
 
 
-            httpSession.setAttribute("checkCode", ticket);
-            checkCode = (String) httpSession.getAttribute("checkCode");
-            System.out.println("checkCodecheckCodecheckCode===" + checkCode);
+            httpSession.setAttribute("mycheckCode", ticket);
+            mycheckCode = (String) httpSession.getAttribute("mycheckCode");
+            System.out.println("checkCodecheckCodecheckCode===" + mycheckCode);
             try {
-                Timer timer = new Timer();
+                Timer myTimer = new Timer();
                 //TimerTask实现5分钟后从session中删除checkCode
-                timer.schedule(new TimerTask() {
+
+
+
+                myTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        httpSession.removeAttribute("checkCode");
-                        System.out.println("checkCode删除成功=========checkCode删除成功");
-                        timer.cancel();
+                        httpSession.removeAttribute("mycheckCode");
+                        System.out.println("mycheckCode 删除成功=========mycheckCode 删除成功");
+                        myTimer.cancel();
                     }
                 }, 1000 * 7000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            checkCode = (String) httpSession.getAttribute("checkCode");
+            mycheckCode = (String) httpSession.getAttribute("mycheckCode");
         }
 
-        System.out.println("aaa=======" + checkCode);
+        System.out.println("aaa=======" + mycheckCode);
 
         try {
-            Map<String, String> configMap = JssdkConfig.jsSDK_Sign(url, checkCode);
+            Map<String, String> configMap = JssdkConfig.jsSDK_Sign(url, mycheckCode, "wxbba0b486dc5184da");
             return Message.success(configMap);
         } catch (Exception e) {
             return Message.err("有异常出现");
@@ -232,7 +298,7 @@ public class WeixinCheckController {
 
                         timer.cancel();
                     }
-                }, 1000 * 7000);
+                }, /*1000 * 7000*/600 * 5);
             } catch (Exception e) {
                 e.printStackTrace();
             }

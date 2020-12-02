@@ -20,7 +20,7 @@ import java.util.UUID;
 @Component
 public class JssdkConfig {
 
-    public static Map<String, String> jsSDK_Sign(String url,String ticket) {
+    public static Map<String, String> jsSDK_Sign(String url,String ticket,String appId) {
         Map<String, String> ret = new HashMap<String, String>();
         String nonce_str = create_nonce_str();
         String timestamp = create_timestamp();
@@ -42,12 +42,20 @@ public class JssdkConfig {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        System.out.println("JssdkConfig==========start");
+        System.out.println(url);
+        System.out.println(appId);
+        System.out.println(jsapi_ticket);
+        System.out.println(nonce_str);
+        System.out.println(timestamp);
+        System.out.println(signature);
         ret.put("url", url);
-        ret.put("appId", "wxbba0b486dc5184da");
+        ret.put("appId", appId);
         ret.put("jsapi_ticket", jsapi_ticket);
         ret.put("nonceStr", nonce_str);
         ret.put("timestamp", timestamp);
         ret.put("signature", signature);
+        System.out.println("JssdkConfig==========end");
         return ret;
     }
 

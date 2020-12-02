@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class FileReaderDemo1 {
     public static void main(String[] args) throws IOException {
-        FileReader fr = new FileReader("c.txt");
+        FileReader fr = new FileReader("pom.xml");
         //调用输入流对象的读数据方法
         //int read():一次读取一个字符
         int ch = fr.read();

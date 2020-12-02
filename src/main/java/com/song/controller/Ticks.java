@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Ticks {
-
+    Ticks() {
+        System.out.println("Ticks initial ...");
+    }
   /*  @Autowired
     HttpUtils httpUtils;
 
@@ -22,4 +24,7 @@ public class Ticks {
         JSONObject jsonObject1 = JSONObject.parseObject(result);
         String ticket = jsonObject1.getString("ticket");
     }*/
+  public void getTicks() {
+      System.out.println("getTicks-----------");
+  }
 }

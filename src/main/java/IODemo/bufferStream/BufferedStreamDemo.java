@@ -31,9 +31,10 @@ public class BufferedStreamDemo {
 
         //一次读写一个字符数组
         char[] chs = new char[1024];
+        System.out.println(chs);
         int len;
         while((len=br.read(chs))!=-1) {
-            System.out.print(new String(chs,0,len));
+//            System.out.print(new String(chs,0,len));
         }
 
         //释放资源

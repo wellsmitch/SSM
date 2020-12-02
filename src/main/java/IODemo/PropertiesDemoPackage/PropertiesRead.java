@@ -37,7 +37,7 @@ public class PropertiesRead {
         FileWriter fw = new FileWriter("e.txt");
 
         //void store(Writer writer, String comments)
-        prop.store(fw, "hello world");
+        prop.store(fw, "hello world2");
 
         //释放资源
         fw.close();

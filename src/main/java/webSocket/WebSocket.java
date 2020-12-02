@@ -36,7 +36,7 @@ public class WebSocket {
 
     @OnOpen
     public void onOpen(@PathParam("username") String username, Session session) throws IOException {
-
+/*
         this.username = username = String.valueOf(Math.random());
         this.session = session;
         addOnlineCount();
@@ -61,15 +61,15 @@ public class WebSocket {
                     }
                 }
             }, 0, 3L * 1000);
-        }
+        }*/
 
     }
 
-    @OnClose
-    public void onClose() throws IOException {
-        clients.remove(username);
-        subOnlineCount();
-    }
+//    @OnClose
+//    public void onClose() throws IOException {
+//        clients.remove(username);
+//        subOnlineCount();
+//    }
 
     @OnMessage
     public void onMessage(String message) throws IOException {

@@ -5,11 +5,12 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
     <!--若springmvc中只扫描controller,则需要加上service,和dao的扫描功能-->
     <context:component-scan base-package="com.song"/>
     <context:property-placeholder location="classpath:database.properties"/>
@@ -49,6 +50,7 @@
 
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
+    <task:annotation-driven/>
     <!--transaction-manager="transactionManager"一定要加上,否则会报错,该配置是以事物的方式开启注解-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

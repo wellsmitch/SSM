@@ -22,7 +22,9 @@ public class HttpTemplateAjax {
 
     public static String httpPost(String url, String name) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(url, name, String.class).getBody();
+//        return restTemplate.postForEntity(url, name, String.class).getBody();
+//        restTemplate.patchForObject()
+        return "";
     }
 
     public static void analysisJson(Object objectJson) {

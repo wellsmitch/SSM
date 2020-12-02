@@ -3,16 +3,18 @@ package com.song.pojo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.Date;
 
-public class CovidAndCharge {
+public class CovidAndCharge implements Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = 4517148792211901384L;
+    private static final long serialVersionUID = 2045083326015247398L;
 
     private Integer id;
     private Integer zhengzhouInc;
@@ -21,6 +23,7 @@ public class CovidAndCharge {
 
 
     private Integer zhengZhouRes;
+    @JsonIgnore
     private Integer dianfei;
 
     public Integer getId() {
