@@ -2,6 +2,12 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    request.setAttribute("basePth", basePath);
+    request.setAttribute("path", path);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +17,7 @@
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <hr>
+<a href="<%=basePath %>"><%=path%>aaaaaaaaaaaa</a>
 <form action="${pageContext.request.contextPath }/item/queryitem.action" method="post">
     查询条件1：
     <table width="100%" border=1>
@@ -51,6 +58,11 @@
 <button id="updateCovid">更新Covid信息</button>
 <input type="file" id="file">
 <button id="uploadFile">上传文件</button>
+<%
+    Object[] a = {11, 22, "rwe"};
+    pageContext.setAttribute("f", a);
+%>
+
 </body>
 <script type="text/javascript">
     //upload
@@ -63,7 +75,7 @@
             url: "http://localhost:8099/bbb/uploadFile.action",
             data: fm,
             async: true,
-            processData:false,
+            processData: false,
             contentType: false,
             success: function (data) {
                 console.log(data);
@@ -169,5 +181,12 @@
             }
         });
     });
+
+
+</script>
+<script type="text/javascript">
+    var basePath1 = "${requestScope.get("basePth")}"
+    var Path1 = "${requestScope.get("path")}"
+    console.log(basePath1, Path1)
 </script>
 </html>

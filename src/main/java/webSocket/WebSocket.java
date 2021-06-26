@@ -1,16 +1,14 @@
 package webSocket;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
@@ -35,9 +33,12 @@ public class WebSocket {
     UserController userController;
 
     @OnOpen
-    public void onOpen(@PathParam("username") String username, Session session) throws IOException {
-/*
+    public void onOpen(@PathParam("username") String username, Session session, EndpointConfig config) throws IOException {
         this.username = username = String.valueOf(Math.random());
+        Map<String, Object> userProperties = config.getUserProperties();
+        String httpSessionId = (String) config.getUserProperties().get("sessionId");
+
+        System.out.println("有新连接加入！" + httpSessionId);
         this.session = session;
         addOnlineCount();
         clients.put(username, this);
@@ -61,7 +62,7 @@ public class WebSocket {
                     }
                 }
             }, 0, 3L * 1000);
-        }*/
+        }
 
     }
 
@@ -79,7 +80,7 @@ public class WebSocket {
             System.out.println("entry.getKey()" + entry.getKey() + "entry.getValue()" + entry.getValue());
         }
 //        System.out.println("来了一个链接");
-//        sendMessageAll("给所有人");
+        sendMessageAll("给所有人");
     }
 
     @OnError
@@ -98,7 +99,7 @@ public class WebSocket {
 //            sendText(item, message);
             System.out.println("++++++++");
             System.out.println("发出去一个链接");
-//            item.session.getAsyncRemote().sendText(message);
+            item.session.getAsyncRemote().sendText(message);
         }
     }
 

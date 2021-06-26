@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<% %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
@@ -24,7 +25,7 @@
     if ('WebSocket' in window) {
         console.log("浏览器支持Websocket");
 
-        websocket = new WebSocket('ws://' + host + '/bbb/webSocket/' + username);
+        websocket = new WebSocket('ws://' + host + '/webSocket/' + username);
 
     } else {
 
@@ -65,7 +66,7 @@
 
         // websocket.close();
 
-        console.log("webSocket已关闭！")
+        // console.log("webSocket已关闭！")
 
     };
 
