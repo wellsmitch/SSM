@@ -53,4 +53,12 @@
 			<appender-ref ref="RollingFileError" />
 		</root>
 	</loggers>
+	<!-- root部分定义了log4j的默认输出级别和方式 -->
+	<!--<root>-->
+		<!--<priority value="INFO" />-->
+		<!--<appender-ref ref="INFO" />-->
+		<!--<appender-ref ref="WARN" />-->
+		<!--<appender-ref ref="ERROR" />-->
+
+	<!--</root>-->
 </configuration>

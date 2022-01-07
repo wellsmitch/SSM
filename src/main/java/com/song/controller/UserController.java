@@ -3,6 +3,7 @@ package com.song.controller;
 import com.song.pojo.User;
 import com.song.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +24,8 @@ public class UserController {
     // 查询用户
     @RequestMapping(value = "/item/userLogin.action")
     @ResponseBody
-    public Object userLoginRes(Integer id, @ModelAttribute("user") User user, String username, String password, HttpServletRequest httpServletRequest, MultipartFile file) throws IOException {//,@RequestBody User users_
+    public Object userLoginRes(Integer id, @ModelAttribute("user") User user, String username, String password, @DateTimeFormat(pattern="yyyy-MM-dd") Date date, HttpServletRequest httpServletRequest, MultipartFile file) throws IOException {//,@RequestBody User users_
+        System.out.println(date);
         if (username != null && password != null) {
             return new SimpleJsonResult(true, userServiceImpl.findUserByUser(user));
         } else {

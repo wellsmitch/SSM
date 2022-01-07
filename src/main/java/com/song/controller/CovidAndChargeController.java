@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class CovidAndChargeController {
@@ -39,6 +40,15 @@ public class CovidAndChargeController {
     @RequestMapping(value = "item/updateCovid.action")
     @ResponseBody
     public void updateCovidMethod(@RequestBody CovidAndCharge covi) {//@ModelAttribute("CovidAndCharge") CovidAndCharge covi
+        System.out.println(covi);
+        Boolean cac = null;
+        cac = covidAndCharge_.updateCovidAndCharge(covi);
+//        return cac;
+    }
+
+    @RequestMapping(value = "item/updateCovidByFormData.action")
+    @ResponseBody
+    public void updateCovidByFormData(CovidAndCharge covi) {//@ModelAttribute("CovidAndCharge") CovidAndCharge covi
         System.out.println(covi);
         Boolean cac = null;
         cac = covidAndCharge_.updateCovidAndCharge(covi);

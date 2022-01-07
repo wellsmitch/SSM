@@ -1,5 +1,6 @@
 package com.song.controller;
 
+import com.song.pojo.ReadHubTopic;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,10 +32,10 @@ public class CommonController {
             } else {
                 //json格式
     * */
-    public SimpleJsonResult getOuterData(@RequestParam Map map) {
+    public SimpleJsonResult getOuterData(@RequestParam Map map) throws ClassNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         String url = (String) map.get("url");
-        Object forObject = restTemplate.getForObject(url, Object.class, map);
+        Object forObject = restTemplate.getForObject(url, Class.forName("com.song.pojo.ReadHubTopic"), map);
         return new SimpleJsonResult(true, forObject);
     }
 

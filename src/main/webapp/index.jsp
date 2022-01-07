@@ -8,6 +8,10 @@
 <body>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta charset="utf-8">
+<header>
+    <%@ include file="./js.jsp" %>
+    <%--<jsp:include page="./js.jsp"></jsp:include>--%>
+</header>
 <h1 id="message"></h1>
 <h2>qqqq</h2>
 <button id="sendMsg">发送webSockt</button>
@@ -108,6 +112,9 @@
         document.getElementById('message').innerHTML += innerHTML + '<br/>';
 
     }
+</script>
+<script type="text/javascript">
+    console.log("jquery::::;;",$);
 </script>
 </body>
 </html>

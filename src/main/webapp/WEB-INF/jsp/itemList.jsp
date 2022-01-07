@@ -86,7 +86,7 @@
         $.ajax({
             type: "post",
             <%--url: "${pageContext.request.contextPath}/item/addUser.action",--%>
-            url: "http://localhost:8099/bbb/item/addUser.action",
+            // url: "http://localhost:8099/bbb/item/addUser.action",
             data: {
                 username: "aaas",
                 sex: '男'
@@ -101,12 +101,13 @@
 
     $('#getJson').click(function () {
         $.ajax({
-            type: "post",
+            type: "get",
             url: "http://localhost:8099/bbb/item/userLogin.action",
             // url: "http://localhost:8099/bbb/item/getUser.action",
             data: {
                 username: $("#username").val(),
-                password: $("#password").val()
+                password: $("#password").val(),
+                date: "2022-10-20"
             },
             async: true,
             success: function (data) {
@@ -158,22 +159,23 @@
     $('#updateCovid').click(function () {
         $.ajax({
             type: "post",
-            url: "http://localhost:8099/bbb/item/updateCovid.action",
+            // url: "http://localhost:8099/bbb/item/updateCovid.action",
+            url: "http://localhost:8099/bbb/item/updateCovidByFormData.action",
             async: true,
-            contentType: 'application/json; charset=utf-8',
-            // contentIype: 'application/x-www-form-urlencoded',
+            // contentType: 'application/json; charset=utf-8',
+            contentIype: 'application/x-www-form-urlencoded',
             data:
-                JSON.stringify(
+                // JSON.stringify(
                     {
                         dianfei: $('#DIANFEI').val(),
-                        time: $('#TIME').val(),
+                        dateData: $('#TIME').val(),
                         heNanRes: $('#HENAN').val(),
                         zhengZhouRes: $('#ZHENGZHOU').val(),
                         zhengzhouInc: 12,
                         henNanInc: 12,
                         id: 1
                     }
-                )
+                // )
             ,
             dataType: 'json',
             success: function (data) {

@@ -379,7 +379,7 @@
                 <configuration>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <webAppConfig>
-                        <contextPath>/bba</contextPath>
+                        <contextPath>/bbb</contextPath>
                     </webAppConfig>
                     <httpConnector>
                         <port>8099</port>
